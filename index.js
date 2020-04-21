@@ -4,8 +4,10 @@ const mongoose=require('mongoose');
 const bodyParser= require('body-parser');
 require('dotenv/config');
 const mainRouter= require('./routes/main');
+const rankRouter= require('./routes/rank');
 app.use(bodyParser.json());
 app.use('/main',mainRouter);
+app.use('/rank',rankRouter);
 
 mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true ,useUnifiedTopology: true},(err)=>{
     if(err) console.log(err);

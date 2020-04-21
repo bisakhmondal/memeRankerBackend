@@ -4,23 +4,23 @@ const Meme= require('../models/Meme');
 const getSortedorder=(prop)=>{
     (a,b)=>{
         if(a[prop]>b[prop]){
-            return 1;
+            return -1;
         }
         if(a[prop]<b[prop]){
-            return -1;
+            return 1;
         }
         else return 0;
     }
 }
 
 router.get('/',async (req,res)=>{
-    const memelist= await Meme.find();
-    const resList=memelist.sort(getSortedorder('rank')).forEach(val=>{
-        delete val.date;
-        delete val._id;
-        delete val.__v;
-    });
-    res.status(200).json(resList);
+    const t= await Meme.count();
+    console.log(t);
+    const memelist= await Meme.find({},['name','rank','url']);
+    // const resList=memelist.sort(getSortedorder('rank')).map(val=>{
+    //     return {name: val.name,rank: val.rank, url: val.url}
+    // });
+    res.status(200).json(memelist.sort(getSortedorder('rank')));
 });
 
 router.post('/',async (req,res)=>{
