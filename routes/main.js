@@ -26,17 +26,7 @@ const re_weburl = new RegExp(
       "(?:[/?#]\\S*)?" +
     "$", "i"
   );
-const getSortedorder=(prop)=>{
-    (a,b)=>{
-        if(a[prop]>b[prop]){
-            return -1;
-        }
-        if(a[prop]<b[prop]){
-            return 1;
-        }
-        else return 0;
-    }
-}
+ 
 const schema=Joi.object().keys({
     // url: `{Joi.string().regex(),
     url: Joi.string()
@@ -45,9 +35,9 @@ const schema=Joi.object().keys({
 });
 
 router.get('/',async (req,res)=>{
-    console.log(t);
+    // console.log(t);
     const memelist= await Meme.find({},['name','rank','url']);
-    res.status(200).json(memelist.sort(getSortedorder('rank')));
+    res.status(200).json(memelist.sort((a,b)=>(b.rank-a.rank)));
 });
 
 router.post('/attach',async (req,res)=>{
@@ -61,7 +51,7 @@ router.post('/attach',async (req,res)=>{
         res.json(saveInfo);
     }
     else(
-        res.status(401).json({message:"Enter valid url!"})
+        res.json({message:"Enter valid url!"})
     )
 });
 module.exports=router;

@@ -32,7 +32,7 @@ router.get('/',async (req,res)=>{
     }
     const meme1= await Meme.find().skip(rand1).limit(1); 
     const meme2= await Meme.find().skip(rand2).limit(1); 
-    res.json({arr:[meme1,meme2]});
+    res.json({arr:[meme1[0],meme2[0]]});    
 });
 router.put('/',async (req,res)=>{
    const doc1=req.body.player;
