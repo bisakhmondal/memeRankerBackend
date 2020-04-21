@@ -1,0 +1,28 @@
+{
+  "name": "meme-template-backend",
+  "version": "1.0.0",
+  "description": "This is an auto generated README. Please edit if required.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bisakhmondal/meme-template-backend.git"
+  },
+  "author": "Bisakh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bisakhmondal/meme-template-backend/issues"
+  },
+  "homepage": "https://github.com/bisakhmondal/meme-template-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
