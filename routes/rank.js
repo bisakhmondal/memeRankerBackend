@@ -23,7 +23,7 @@ const getWeight=(rank,win)=>{
         return 40; 
     }
 }
-router.post('/',async (req,res)=>{
+router.get('/',async (req,res)=>{
     const cnt= await Meme.estimatedDocumentCount();
     const rand1=Math.floor(Math.random()*cnt);
     let rand2=rand1;
@@ -52,9 +52,12 @@ router.put('/',async (req,res)=>{
     rank1=doc1.rank+getWeight(doc1.rank,false)*(0-Exp1);
     rank2=doc2.rank+getWeight(doc2.rank,true)*(1-(1-Exp1));
    }
+   try{
    const update1=await Meme.findByIdAndUpdate({_id:doc1._id},{$set:{rank:Math.floor(rank1)}});
    const update2=await Meme.findByIdAndUpdate({_id:doc2._id},{$set:{rank:Math.floor(rank2)}});
-   res.json([update1,update2]);
+   res.json(["success!"]);
+   }catch(err){
+       res.json({message:"Error Occured!"})};
 });
 
 module.exports=router;

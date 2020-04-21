@@ -1,11 +1,14 @@
 const express=require('express');
 const app=express();
+const cors=require('cors');
 const mongoose=require('mongoose');
 const bodyParser= require('body-parser');
 require('dotenv/config');
+
 const mainRouter= require('./routes/main');
 const rankRouter= require('./routes/rank');
 app.use(bodyParser.json());
+app.use(cors);
 app.use('/main',mainRouter);
 app.use('/rank',rankRouter);
 
